@@ -1,0 +1,1 @@
+const t="slideLibraryDiagnostics";function a(){try{return localStorage.getItem(t)==="true"}catch{return!1}}function s(e){try{if(e){localStorage.setItem(t,"true");return}localStorage.removeItem(t)}catch{}}export{a as i,s};
