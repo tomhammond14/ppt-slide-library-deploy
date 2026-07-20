@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Evolve Starter</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Arial, sans-serif;
+        color: #172033;
+        background: #f7f8fb;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+
+      main {
+        width: min(520px, calc(100vw - 32px));
+        background: #fff;
+        border: 1px solid #d8dde8;
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: 0 12px 36px rgba(18, 31, 53, 0.12);
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 22px;
+      }
+
+      p {
+        margin: 0 0 16px;
+        line-height: 1.45;
+      }
+
+      a {
+        display: inline-block;
+        padding: 10px 14px;
+        border-radius: 6px;
+        background: #183a8f;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .error {
+        color: #9b1c1c;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Open Evolve Starter</h1>
+      <p id="message">Opening the governed starter template in desktop PowerPoint...</p>
+      <a id="open-link" href="#" rel="noopener noreferrer">Open in PowerPoint</a>
+    </main>
+    <script>
+      (function () {
+        var allowedHosts = ["evolvecf.sharepoint.com"];
+        var params = new URLSearchParams(window.location.search);
+        var templateUrl = params.get("templateUrl") || "";
+        var operationId = params.get("operationId") || "";
+        var message = document.getElementById("message");
+        var link = document.getElementById("open-link");
+        var operationPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{12}$/i;
+
+        function fail(text) {
+          message.textContent = text;
+          message.className = "error";
+          link.style.display = "none";
+        }
+
+        if (!operationPattern.test(operationId)) {
+          fail("The starter operation ID is not valid.");
+          return;
+        }
+
+        var parsed;
+        try {
+          parsed = new URL(templateUrl);
+        } catch (error) {
+          fail("The starter template URL is not valid.");
+          return;
+        }
+
+        if (parsed.protocol !== "https:" || !parsed.pathname.toLowerCase().endsWith(".potx")) {
+          fail("The starter template must be a direct HTTPS .potx URL.");
+          return;
+        }
+
+        if (allowedHosts.indexOf(parsed.hostname.toLowerCase()) < 0) {
+          fail("The starter template host is not allowlisted.");
+          return;
+        }
+
+        var protocolUri = "ms-powerpoint:nft|u|" + templateUrl;
+        link.href = protocolUri;
+        link.addEventListener("click", function () {
+          message.textContent = "If PowerPoint does not open, desktop PowerPoint may be unavailable or blocked by policy.";
+        });
+
+        window.setTimeout(function () {
+          window.location.href = protocolUri;
+        }, 100);
+      })();
+    </script>
+  </body>
+</html>
