@@ -4,11 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slide Library</title>
+    <style>
+      html,
+      body,
+      #root {
+        min-height: 100%;
+        margin: 0;
+        background: #f7f8fb;
+      }
+
+      #root:empty::before {
+        box-sizing: border-box;
+        content: "Loading Evolve...";
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        color: #24345d;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+      }
+    </style>
     <script
       src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"
+      async
       type="text/javascript"
     ></script>
-    <script type="module" crossorigin src="./assets/taskpane-SJ8qlI4g.js"></script>
+    <script type="module" crossorigin src="./assets/taskpane-DW6HQIv9.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
     <link rel="modulepreload" crossorigin href="./assets/appPageUrl-DG_ejS-6.js">
     <link rel="modulepreload" crossorigin href="./assets/assetAccess-CwzvoHhI.js">
