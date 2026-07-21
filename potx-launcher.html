@@ -100,12 +100,23 @@
 
         var protocolUri = "ms-powerpoint:nft|u|" + templateUrl;
         link.href = protocolUri;
+        function noteAttemptedLaunch() {
+          message.textContent =
+            "PowerPoint should now be opening. This window will close automatically if the host allows it.";
+          window.setTimeout(function () {
+            window.close();
+            message.textContent =
+              "PowerPoint should now be opening. You can close this window when the new presentation appears.";
+          }, 2500);
+        }
+
         link.addEventListener("click", function () {
-          message.textContent = "If PowerPoint does not open, desktop PowerPoint may be unavailable or blocked by policy.";
+          noteAttemptedLaunch();
         });
 
         window.setTimeout(function () {
           window.location.href = protocolUri;
+          noteAttemptedLaunch();
         }, 100);
       })();
     </script>
