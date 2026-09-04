@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slide Library</title>
+    <style>
+      html,
+      body,
+      #root {
+        min-height: 100%;
+        margin: 0;
+        background: #f7f8fb;
+      }
+
+      #root:empty::before {
+        box-sizing: border-box;
+        content: "Loading Evolve...";
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        color: #24345d;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+      }
+    </style>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      if (window.Office) {
+        window.Office.initialize = function () {
+          window.__EVOLVE_OFFICE_INITIALIZED__ = true;
+          window.dispatchEvent(new Event("evolve-office-initialized"));
+        };
+      }
+    </script>
+    <script type="module" crossorigin src="./assets/taskpane-CYxoFQ9R.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="modulepreload" crossorigin href="./assets/appPageUrl-HMhvcWME.js">
+    <link rel="modulepreload" crossorigin href="./assets/assetAccess-VDI0NkbJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/styles-CJ3DebT3.js">
+    <link rel="modulepreload" crossorigin href="./assets/IconUploadForm-Bv10jkMq.js">
+    <link rel="modulepreload" crossorigin href="./assets/iconLibraryResolvers-C6vlFL7b.js">
+    <link rel="modulepreload" crossorigin href="./assets/fontCompliance-BfJGMDdV.js">
+    <link rel="modulepreload" crossorigin href="./assets/diagnostics-CUVBC3ip.js">
+    <link rel="modulepreload" crossorigin href="./assets/thumbnailPipeline-BU8R3OA1.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialogMetadataPresentation-4BxDQJW9.js">
+    <link rel="stylesheet" crossorigin href="./assets/styles-KlX2tjIp.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
